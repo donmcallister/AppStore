@@ -12,6 +12,7 @@
 		943D1AEC2285CCE60015BB66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 943D1AEA2285CCE60015BB66 /* Main.storyboard */; };
 		943D1AEE2285CCE70015BB66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 943D1AED2285CCE70015BB66 /* Assets.xcassets */; };
 		943D1AF12285CCE70015BB66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 943D1AEF2285CCE70015BB66 /* LaunchScreen.storyboard */; };
+		943D1AF92285CD280015BB66 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D1AF82285CD280015BB66 /* BaseTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		943D1AED2285CCE70015BB66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		943D1AF02285CCE70015BB66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		943D1AF22285CCE70015BB66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		943D1AF82285CD280015BB66 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				943D1AE62285CCE60015BB66 /* AppDelegate.swift */,
+				943D1AF82285CD280015BB66 /* BaseTabBarController.swift */,
 				943D1AE82285CCE60015BB66 /* ViewController.swift */,
 				943D1AEA2285CCE60015BB66 /* Main.storyboard */,
 				943D1AED2285CCE70015BB66 /* Assets.xcassets */,
@@ -137,6 +140,7 @@
 			files = (
 				943D1AE92285CCE60015BB66 /* ViewController.swift in Sources */,
 				943D1AE72285CCE60015BB66 /* AppDelegate.swift in Sources */,
+				943D1AF92285CD280015BB66 /* BaseTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
