@@ -14,6 +14,7 @@
 		943D1AF12285CCE70015BB66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 943D1AEF2285CCE70015BB66 /* LaunchScreen.storyboard */; };
 		943D1AF92285CD280015BB66 /* BaseTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D1AF82285CD280015BB66 /* BaseTabBarController.swift */; };
 		943D1AFC2285E4EB0015BB66 /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D1AFB2285E4EB0015BB66 /* AppsSearchController.swift */; };
+		943D1AFF2285EB540015BB66 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D1AFE2285EB540015BB66 /* SearchResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		943D1AF22285CCE70015BB66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		943D1AF82285CD280015BB66 /* BaseTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarController.swift; sourceTree = "<group>"; };
 		943D1AFB2285E4EB0015BB66 /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
+		943D1AFE2285EB540015BB66 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		943D1AE52285CCE60015BB66 /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
+				943D1AFD2285EB330015BB66 /* Views */,
 				943D1AE62285CCE60015BB66 /* AppDelegate.swift */,
 				943D1AFA2285E3F20015BB66 /* Controller */,
 				943D1AEA2285CCE60015BB66 /* Main.storyboard */,
@@ -76,6 +79,14 @@
 				943D1AFB2285E4EB0015BB66 /* AppsSearchController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		943D1AFD2285EB330015BB66 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				943D1AFE2285EB540015BB66 /* SearchResultCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +164,7 @@
 				943D1AE72285CCE60015BB66 /* AppDelegate.swift in Sources */,
 				943D1AF92285CD280015BB66 /* BaseTabBarController.swift in Sources */,
 				943D1AFC2285E4EB0015BB66 /* AppsSearchController.swift in Sources */,
+				943D1AFF2285EB540015BB66 /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
