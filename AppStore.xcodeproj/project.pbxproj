@@ -60,8 +60,8 @@
 		943D1AE52285CCE60015BB66 /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
-				943D1AFD2285EB330015BB66 /* Views */,
 				943D1AE62285CCE60015BB66 /* AppDelegate.swift */,
+				943D1AFD2285EB330015BB66 /* Views */,
 				943D1AFA2285E3F20015BB66 /* Controller */,
 				943D1AEA2285CCE60015BB66 /* Main.storyboard */,
 				943D1AE82285CCE60015BB66 /* ViewController.swift */,

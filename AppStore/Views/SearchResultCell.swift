@@ -28,7 +28,7 @@ import UIKit
 
 class SearchResultCell: UICollectionViewCell {
     
-    let imageView: UIImageView = {
+    let appIconImageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .red
         iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
@@ -62,6 +62,8 @@ class SearchResultCell: UICollectionViewCell {
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
         button.backgroundColor = UIColor(white: 0.95, alpha: 1)
         button.widthAnchor.constraint(equalToConstant: 80).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        button.layer.cornerRadius = 16
         return button
     }()
     
@@ -76,17 +78,17 @@ class SearchResultCell: UICollectionViewCell {
         labelsStackView.axis = .vertical
         
         let stackView = UIStackView(arrangedSubviews: [
-            imageView, labelsStackView, getButton
+            appIconImageView, labelsStackView, getButton
             ])
         stackView.spacing = 12
-        stackView.alignment = .center
+        stackView.alignment = .center //important to get labels vertically aligned correctly.. 
         
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true //space on left side
         stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true //space on right side
         
     }
     
