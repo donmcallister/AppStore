@@ -17,6 +17,7 @@
 		943D1AFF2285EB540015BB66 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D1AFE2285EB540015BB66 /* SearchResultCell.swift */; };
 		94757D512288AC5300EF5B22 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94757D502288AC5300EF5B22 /* UIView+Layout.swift */; };
 		94757D532288B2F900EF5B22 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94757D522288B2F900EF5B22 /* VerticalStackView.swift */; };
+		94757D562288E57100EF5B22 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94757D552288E57100EF5B22 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		943D1AFE2285EB540015BB66 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		94757D502288AC5300EF5B22 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		94757D522288B2F900EF5B22 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
+		94757D552288E57100EF5B22 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		943D1AE52285CCE60015BB66 /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
+				94757D542288E55200EF5B22 /* Model */,
 				94757D4F2288AC1A00EF5B22 /* Helpers */,
 				943D1AFD2285EB330015BB66 /* Views */,
 				943D1AFA2285E3F20015BB66 /* Controller */,
@@ -101,6 +104,14 @@
 				94757D502288AC5300EF5B22 /* UIView+Layout.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		94757D542288E55200EF5B22 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94757D552288E57100EF5B22 /* SearchResult.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 			files = (
 				943D1AE92285CCE60015BB66 /* ViewController.swift in Sources */,
 				943D1AE72285CCE60015BB66 /* AppDelegate.swift in Sources */,
+				94757D562288E57100EF5B22 /* SearchResult.swift in Sources */,
 				94757D512288AC5300EF5B22 /* UIView+Layout.swift in Sources */,
 				943D1AF92285CD280015BB66 /* BaseTabBarController.swift in Sources */,
 				943D1AFC2285E4EB0015BB66 /* AppsSearchController.swift in Sources */,
