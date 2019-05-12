@@ -84,11 +84,12 @@ class SearchResultCell: UICollectionViewCell {
         stackView.alignment = .center //important to get labels vertically aligned correctly.. 
         
         addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true //space on left side
-        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true //space on right side
+        stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
+//        stackView.translatesAutoresizingMaskIntoConstraints = false
+//        stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+//        stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true //space on left side
+//        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+//        stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true //space on right side
         
     }
     
