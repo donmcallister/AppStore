@@ -16,6 +16,7 @@
 		943D1AFC2285E4EB0015BB66 /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D1AFB2285E4EB0015BB66 /* AppsSearchController.swift */; };
 		943D1AFF2285EB540015BB66 /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943D1AFE2285EB540015BB66 /* SearchResultCell.swift */; };
 		94757D512288AC5300EF5B22 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94757D502288AC5300EF5B22 /* UIView+Layout.swift */; };
+		94757D532288B2F900EF5B22 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94757D522288B2F900EF5B22 /* VerticalStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		943D1AFB2285E4EB0015BB66 /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		943D1AFE2285EB540015BB66 /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		94757D502288AC5300EF5B22 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		94757D522288B2F900EF5B22 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		94757D4F2288AC1A00EF5B22 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				94757D522288B2F900EF5B22 /* VerticalStackView.swift */,
 				94757D502288AC5300EF5B22 /* UIView+Layout.swift */,
 			);
 			path = Helpers;
@@ -177,6 +180,7 @@
 				943D1AF92285CD280015BB66 /* BaseTabBarController.swift in Sources */,
 				943D1AFC2285E4EB0015BB66 /* AppsSearchController.swift in Sources */,
 				943D1AFF2285EB540015BB66 /* SearchResultCell.swift in Sources */,
+				94757D532288B2F900EF5B22 /* VerticalStackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

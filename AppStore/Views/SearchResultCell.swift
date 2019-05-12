@@ -85,10 +85,9 @@ class SearchResultCell: UICollectionViewCell {
         
        // backgroundColor = .yellow
         
-        let labelsStackView = UIStackView(arrangedSubviews: [
-            nameLabel, categoryLabel, ratingsLabel
-            ])
-        labelsStackView.axis = .vertical
+        //we can reduce this code since vertical alignment stack views very common with use of new file: Vertical Stack View
+        let labelsStackView = VerticalStackView(arrangedSubviews: [
+            nameLabel, categoryLabel, ratingsLabel])
         
         //rename CMD+CTRL+E to infoStackView:
         let infoTopStackView = UIStackView(arrangedSubviews: [
@@ -104,11 +103,8 @@ class SearchResultCell: UICollectionViewCell {
         
     
         //overllStackView was created prior to the screenshot stack view
-        let overallStackView = UIStackView(arrangedSubviews: [
-            infoTopStackView, screenshotStackView
-            ])
-        overallStackView.axis = .vertical
-        overallStackView.spacing = 16 //spacing between top stack view
+        let overallStackView = VerticalStackView(arrangedSubviews: [infoTopStackView, screenshotStackView], spacing: 16)
+
         
         addSubview(overallStackView)
         overallStackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
