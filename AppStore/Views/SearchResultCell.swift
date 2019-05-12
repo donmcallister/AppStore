@@ -67,29 +67,51 @@ class SearchResultCell: UICollectionViewCell {
         return button
     }()
     
+    //three image views:
+    
+    //can't declare as let, need to set as lazy var to have access to instance variables and functions like just created below in order to compile:
+    lazy var screenshot1ImageView = self.createScreenshotImageView()
+    lazy var screenshot2ImageView = self.createScreenshotImageView()
+    lazy var screenshot3ImageView = self.createScreenshotImageView()
+
+    func createScreenshotImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .blue
+        return imageView
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .yellow
+       // backgroundColor = .yellow
         
         let labelsStackView = UIStackView(arrangedSubviews: [
             nameLabel, categoryLabel, ratingsLabel
             ])
         labelsStackView.axis = .vertical
         
-        let stackView = UIStackView(arrangedSubviews: [
+        //rename CMD+CTRL+E to infoStackView:
+        let infoTopStackView = UIStackView(arrangedSubviews: [
             appIconImageView, labelsStackView, getButton
             ])
-        stackView.spacing = 12
-        stackView.alignment = .center //important to get labels vertically aligned correctly.. 
+        infoTopStackView.spacing = 12
+        infoTopStackView.alignment = .center //important to get labels vertically aligned correctly..
         
-        addSubview(stackView)
-        stackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-//        stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true //space on left side
-//        stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-//        stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true //space on right side
+        let screenshotStackView = UIStackView(arrangedSubviews: [screenshot1ImageView, screenshot2ImageView, screenshot3ImageView])
+        screenshotStackView.spacing = 12 //compile here won't get the three snapshots...need distrubution property set:
+        screenshotStackView.distribution = .fillEqually
+        //now go back to appsearch controller to extend the cells height: sizeForItemAt
+        
+    
+        //overllStackView was created prior to the screenshot stack view
+        let overallStackView = UIStackView(arrangedSubviews: [
+            infoTopStackView, screenshotStackView
+            ])
+        overallStackView.axis = .vertical
+        overallStackView.spacing = 16 //spacing between top stack view
+        
+        addSubview(overallStackView)
+        overallStackView.fillSuperview(padding: .init(top: 16, left: 16, bottom: 16, right: 16))
         
     }
     
