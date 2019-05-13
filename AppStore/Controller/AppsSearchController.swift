@@ -8,20 +8,11 @@
 
 import UIKit
 
-// first cast dequed cell tin SearchResult Cell:
-// let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
-// then now have access:  cell.nameLabel.text = "HERE IS MY APP NAME"
-// 1- fetchItunesApps() with URL string
-// 2- fetch data from internet in this function: URLSession.shared.datatask()
-// 3- hit enter for completion handlet
-// 4- remember to add .resume() at end
-// 5 - if let err = err...
-// 6 - use print(data) to get size or print(String(data: data!, encoding: .utf8)) to print out entire API call in debug screen.
-// 7 - JSON decodable object using a struct SearchResult with whatever fields you want to get back and set it to Decodable..
-// 8- now in success case: JSONDecoder().decode(data) or (SearchResult.self, from: data) == searchResult -- put into a DO CATCH BLOCK and add try...
-// 9- print(searchResult) - hard to read so better option:
-// 10- searchResult.results.forEach({print($0.trackName, $0.primaryGenreName)})
-// 11- create a Model group and SearchResult.swift and add the two objects created into it.. (the two structs)
+// 1- capture searchResult.results into a local variable: appResults
+// self.appResults = searchResult.results
+// in numberOfItemsInSection --. return appResults.count
+// after self.appResults = searchResult.results make a call to self.collectionView.reloadData() since can't always guarantee internet connection and any issues grabbing the data from api
+// But will need to then put it on the main thread: DispatchQueue.main.async {} since you can't modify any UI on background thread.
 
 
 class AppsSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -38,17 +29,7 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
         fetchITunesApps()
     }
     
-    //to create a JSON decodable object(this will be put into its own file:
-    
-//    struct SearchResult: Decodable {
-//        let resultCount: Int
-//        let results: [Result]
-//    }
-//    
-//    struct Result: Decodable {
-//        let trackName: String
-//        let primaryGenreName: String
-//    }
+    fileprivate var appResults = [Result]() //our result object we extracted into SearchResult.swift
     
     
     fileprivate func fetchITunesApps() {
@@ -63,16 +44,21 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
                 return
             }
             
+    
             //success
-            print(data)
-            //print a string
-            print(String(data: data!, encoding: .utf8))
             guard let data = data else {return}
             
             do {
                 let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
                 
-                searchResult.results.forEach({print($0.trackName, $0.primaryGenreName)})
+                self.appResults = searchResult.results
+                
+                DispatchQueue.main.async { //get back on the main thread
+                    self.collectionView.reloadData()
+                }
+                
+                
+//                searchResult.results.forEach({print($0.trackName, $0.primaryGenreName)})
                 
             } catch let jsonErr{
                 print("Failed to decode JSONL:", jsonErr)
@@ -88,12 +74,18 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return appResults.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! SearchResultCell
-        cell.nameLabel.text = "HERE IS MY APP NAME"
+        //cell.nameLabel.text = "HERE IS MY APP NAME"
+        
+        let appResult = appResults[indexPath.item]
+        cell.nameLabel.text = appResult.trackName
+        cell.categoryLabel.text = appResult.primaryGenreName
+        cell.ratingsLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
+        
         return cell
     }
     
