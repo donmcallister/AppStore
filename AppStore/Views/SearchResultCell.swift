@@ -6,27 +6,28 @@
 //  Copyright © 2019 Donald McAllister. All rights reserved.
 //
 
-// 1- init
-// 2- imageView, nameLabel, getButton definitions..
-// 3- inside init: addSubview() and utilize a stack view..
-// 4- stackView.translateAutoresizingMaskIntoConstraints = false
-// 5- constraints
-// 6- manipulate stackView subviews to get desired look
-// *rchange background color green to yellow
-// *getButton section add:  button.backgroundColor = UIColor(white: 0.95, alpha: 1)
-// *inside imageView add: iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
-// *button.widthAnchor.constraint(equalToConstant: 80).isActive = true
-// copy and paste nameLabel...adding categoryLabel and ratingsLabel..
-// head back to stack view.. labelStacksView =
-// labelStackView.axis = .vertical --- aligning this vertically and now replae labelView in the other stack with this..
-// stackView = imageView, labelStackView, getButton --- our horizontal view..
-// now need to adjust alignment of stack view to get desired look..
-// stackView.alignment -- the alignment of the arranged subviews perpendicular to the stack view's axis =.center
-// give imageView a height anchor cosntraint since it disappeared.. and change cornerRadius.. 
 
 import UIKit
 
 class SearchResultCell: UICollectionViewCell {
+    
+    var appResult: Result! {
+        didSet {
+            nameLabel.text = appResult.trackName
+            categoryLabel.text = appResult.primaryGenreName
+            ratingsLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
+            
+            let url = URL(string: appResult.artworkUrl100)
+            appIconImageView.sd_setImage(with: url)
+            screenshot1ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[0]))
+            if appResult.screenshotUrls.count > 1 {
+                screenshot2ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
+            }
+            if appResult.screenshotUrls.count > 2 {
+                screenshot3ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
+            }
+        }
+    }
     
     let appIconImageView: UIImageView = {
         let iv = UIImageView()
@@ -34,6 +35,7 @@ class SearchResultCell: UICollectionViewCell {
         iv.widthAnchor.constraint(equalToConstant: 64).isActive = true
         iv.heightAnchor.constraint(equalToConstant: 64).isActive = true
         iv.layer.cornerRadius = 12
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -77,6 +79,12 @@ class SearchResultCell: UICollectionViewCell {
     func createScreenshotImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.backgroundColor = .blue
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = UIColor(white: 0.5, alpha: 0.5).cgColor
+        imageView.contentMode = .scaleAspectFill
+        
         return imageView
     }
     

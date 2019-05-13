@@ -7,34 +7,12 @@
 //
 
 import UIKit
+import SDWebImage
 
-// Separate JSON fetch logic into Service.swift
-// Create class Service with singleton and empty function name
-// come back here to AppSearchcontroller and comment out everything inside fetchItunesApps(_
-// Service.shared.fetchApps() call
-// head back into Service.swift and update inside function: print("fetching...")
-// copy and paste commented section into Service.swift fetch function and delete
-// now in Service.swift we no longer have access to self.appResults and self.collectionView, so delete those lines of code..
-// So question is how do we pass our searchResult back into our AppsSearchController???
-// We'll use a completion block, head into Service and add a parameter..
-// looks like this: fetchApps(completion:() -> () )
-// and then inside fetchApps call the completion block: completion() and then choose fix to have xcode add the @escaping piece to the parameter...
-// and now still error: need to call Service.shared.fetchApps() with completion piece..[hit enter] -   print("Finished fetching apps from controller")
-// now actually get back search results my modifying inside completion block in Service.swift
-// fetchApps(completion:@escaping ([Result]) -> ())
-//   completion(searchResult.results)
-// and once again make the call Service.shared.fetchApps()
-//Service.shared.fetchApps { (<#[Result]#>) in -- hit enter (result) in
-//self.appResults = result AND:  self.collectionView.reloadData() place inside...
-// pass error back through completion handler. so err and jsonErr
-// func fetchApps(completion:@escaping ([Result], Error?)
-// completion(searchResult.results, nil)
-// inside err ---  completion([], nil)
-// inside catch jsonErr --- completion([], jsonErr)
-// now inside AppsSearchController fix argument needed now..call function again!! :
-// Service.shared.fetchApps { (<#[Result]#>, <#Error?#>) in
-// Service.shared.fetchApps { (results, err) in
-
+// in SearchResult.swift add artworkUrl100: String and let screenshotUrls: [String]
+// in cellForItemAt add now:  cell.appIconImageView and cell.screenshot1ImageView
+// command click appIconImageView to enter file and comment these out for now..
+// 
 
 class AppsSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -83,9 +61,26 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
         //cell.nameLabel.text = "HERE IS MY APP NAME"
         
         let appResult = appResults[indexPath.item]
-        cell.nameLabel.text = appResult.trackName
-        cell.categoryLabel.text = appResult.primaryGenreName
-        cell.ratingsLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
+        cell.appResult = appResult
+        
+        //moving the below over to SearchResultCell.swift:
+        //and calling it inside didSet...
+//        cell.nameLabel.text = appResult.trackName
+//        cell.categoryLabel.text = appResult.primaryGenreName
+//        cell.ratingsLabel.text = "Rating: \(appResult.averageUserRating ?? 0)"
+//
+//        let url = URL(string: appResult.artworkUrl100)
+//        cell.appIconImageView.sd_setImage(with: url)
+//        cell.screenshot1ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[0]))
+//        if appResult.screenshotUrls.count > 1 {
+//            cell.screenshot2ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
+//        }
+//        if appResult.screenshotUrls.count > 2 {
+//            cell.screenshot3ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
+//        }
+        
+        
+        
         
         return cell
     }
