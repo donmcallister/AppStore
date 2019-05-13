@@ -9,31 +9,8 @@
 import UIKit
 import SDWebImage
 
-//Search Bar Controller and Search Throttling
-// 1-  fileprivate let searchController = UISearchController(searchResultsController: nil)
-// 2- in viewDidLoad call a function we'll create: setupSearchBar() and place inside:
-// 3- navigationItem.searchController = self.searchController
-// 4 -navigationItem.hidesSearchBarWhenScrolling = false
-// 5 -now we want to be notified whenever text being typed into search field: searchController.searchBar.delegate = self
-// 6-fix error and conform to UISearchBarDelegate
-// 7-func searchBar(textDidChange) call and print(searchText) to see in console
-// 8-now need to update fetch function and pass in search text to update "term=instagram"
-// 9-in Service.swift, add parameter: fetchApps(searchTerm: String, completion....)
-// 10- make call to  Service.shared.fetchApps(searchTerm: searchText) inside searchBar()
-// 11- remove blue background color and now need delay in showing results: search throttling
-// 12 -  var timer: Timer?
-// 13 -  timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (_) in
-// 14 - copy and paste inside this: Service.shared.fetchApps(searchTerm: searchText)...
-// 15 - then kind of strangely you still get aggresive search so need to invalidate this timer: timer?.invalidate() so it no longer fires after the 0.5 delay...
-// 16 - remove fetchItunesApps() inside viewDidLoad since don't want automatic search showing BUT now get a blank screen so let's add a label
-// 17 - fileprivate let enterSearchTermLabel: UILabel.....
-//18 - add it to screen: view.addSubview(enterSearchTermLabel)
-//19 - enterSearchTermLabel.fillSuperview()
-//20 need to hide label on search, done inside numberOfItemsInSection:   enterSearchTermLabel.isHidden = appResults.count != 0
-//21 - now add into collection view so it looks better on searching: collectionView.addSubview(enterSearchTermLabel)
-//22 - add constraints/padding: enterSearchTermLabel.fillSuperview(padding: .init(top: 100, left: 50, bottom: 0, right: 50))
 
-class AppsSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class AppsSearchController: BaseListController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     fileprivate let cellId = "id1234"
     
@@ -128,13 +105,5 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
         
         return cell
     }
-    
-    
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+
 }
