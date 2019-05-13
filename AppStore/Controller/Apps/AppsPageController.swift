@@ -22,6 +22,20 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
         
         //1
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
+        
+        fetchData()
+    
+    }
+    
+    fileprivate func fetchData() {
+        print("Fetching new JSON DATA somehow..")
+        Service.shared.fetchGames { (appGroup, err) in
+            if let err = err {
+                print("Failed to fetch games:", err)
+                
+            }
+            print(appGroup?.feed.results)
+        }
     }
     
     //2
