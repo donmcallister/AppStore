@@ -5,12 +5,6 @@
 //  Created by Donald McAllister on 5/13/19.
 //  Copyright © 2019 Donald McAllister. All rights reserved.
 //
-//Continuing insutrction from BaeTabBarController...
-//11 - create new group inside Views named Apps for our AppsGroupCell..add init code.
-//12 - now let's focus on AppController...
-//13 - add AppsGroupCell instead...in register code and remove .lightgray since trying to make the SearchResultCell change this property..
-//14 - adding titleLabel in AppsGroupCell and cleaning up code with convenience extension
-//
 
 import UIKit
 
@@ -20,7 +14,7 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         
         collectionView.register(
             AppsGroupCell.self, forCellWithReuseIdentifier: cellId)
@@ -38,8 +32,10 @@ class AppsController: BaseListController, UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width, height: 250)
+        return .init(width: view.frame.width, height: 300)
     }
     
-
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .init(top: 16, left: 0, bottom: 0, right: 0)
+    }
 }

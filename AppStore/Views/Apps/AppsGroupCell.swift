@@ -5,25 +5,11 @@
 //  Created by Donald McAllister on 5/13/19.
 //  Copyright © 2019 Donald McAllister. All rights reserved.
 //
-// To layout a horizontal cell inside the gray cell?
-// Add another collection view inside it: horizontalController = UIViewController
-// let horizontalController = UIViewController() //dummy collection controller
-//  addSubview(horizontalController.view)
-// horizontalController.view.anchor(top: titleLabel.bottomAnchor
-// now we can create a HorizontalController
-//now can trade out dummy collection controller with AppsHorizontalController()
-//now we see our nested controller with purple as defined in AppsHorizontalController class
-//now we can render out our horizontal cells inside AppsHorizontalcontroller.. 
+
 
 import UIKit
 
-extension UILabel {
-    convenience init(text: String, font: UIFont) {
-        self.init(frame: .zero)
-        self.text = text
-        self.font = font
-    }
-}
+
 
 class AppsGroupCell: UICollectionViewCell {
   
@@ -43,13 +29,13 @@ class AppsGroupCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .lightGray //.purple just prior to see if rendering this cell in AppsController..
+        // backgroundColor = .lightGray //.purple just prior to see if rendering this cell in AppsController..
         
         addSubview(titleLabel)
-        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+        titleLabel.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 0, right: 0))
         
         addSubview(horizontalController.view)
-        horizontalController.view.backgroundColor = .blue
+       // horizontalController.view.backgroundColor = .blue
         horizontalController.view.anchor(top: titleLabel.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
     }
     
