@@ -8,11 +8,32 @@
 
 import UIKit
 
-// 1- capture searchResult.results into a local variable: appResults
-// self.appResults = searchResult.results
-// in numberOfItemsInSection --. return appResults.count
-// after self.appResults = searchResult.results make a call to self.collectionView.reloadData() since can't always guarantee internet connection and any issues grabbing the data from api
-// But will need to then put it on the main thread: DispatchQueue.main.async {} since you can't modify any UI on background thread.
+// Separate JSON fetch logic into Service.swift
+// Create class Service with singleton and empty function name
+// come back here to AppSearchcontroller and comment out everything inside fetchItunesApps(_
+// Service.shared.fetchApps() call
+// head back into Service.swift and update inside function: print("fetching...")
+// copy and paste commented section into Service.swift fetch function and delete
+// now in Service.swift we no longer have access to self.appResults and self.collectionView, so delete those lines of code..
+// So question is how do we pass our searchResult back into our AppsSearchController???
+// We'll use a completion block, head into Service and add a parameter..
+// looks like this: fetchApps(completion:() -> () )
+// and then inside fetchApps call the completion block: completion() and then choose fix to have xcode add the @escaping piece to the parameter...
+// and now still error: need to call Service.shared.fetchApps() with completion piece..[hit enter] -   print("Finished fetching apps from controller")
+// now actually get back search results my modifying inside completion block in Service.swift
+// fetchApps(completion:@escaping ([Result]) -> ())
+//   completion(searchResult.results)
+// and once again make the call Service.shared.fetchApps()
+//Service.shared.fetchApps { (<#[Result]#>) in -- hit enter (result) in
+//self.appResults = result AND:  self.collectionView.reloadData() place inside...
+// pass error back through completion handler. so err and jsonErr
+// func fetchApps(completion:@escaping ([Result], Error?)
+// completion(searchResult.results, nil)
+// inside err ---  completion([], nil)
+// inside catch jsonErr --- completion([], jsonErr)
+// now inside AppsSearchController fix argument needed now..call function again!! :
+// Service.shared.fetchApps { (<#[Result]#>, <#Error?#>) in
+// Service.shared.fetchApps { (results, err) in
 
 
 class AppsSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -33,40 +54,20 @@ class AppsSearchController: UICollectionViewController, UICollectionViewDelegate
     
     
     fileprivate func fetchITunesApps() {
-        let urlString =  "https://itunes.apple.com/search?term=instagram&entity=software"
-        guard let url = URL(string: urlString) else {return}
-        
-        //fetch data from internet
-        URLSession.shared.dataTask(with: url) { (data, resp, err) in
+
+        Service.shared.fetchApps { (results, err) in
             
             if let err = err {
-                print("failed to fetch apps:", err)
+                print("Failed to fetch apps:", err)
                 return
             }
             
-    
-            //success
-            guard let data = data else {return}
-            
-            do {
-                let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
-                
-                self.appResults = searchResult.results
-                
-                DispatchQueue.main.async { //get back on the main thread
-                    self.collectionView.reloadData()
-                }
-                
-                
-//                searchResult.results.forEach({print($0.trackName, $0.primaryGenreName)})
-                
-            } catch let jsonErr{
-                print("Failed to decode JSONL:", jsonErr)
+             self.appResults = results
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
-            
-            
-            
-        }.resume() //fires off the request - easily forget this..
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
