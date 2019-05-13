@@ -16,13 +16,6 @@ class AppsGroupCell: UICollectionViewCell {
     let titleLabel = UILabel(text: "App Section",
                              font: .boldSystemFont(ofSize: 30))
     
-//    let titleLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "App Section"
-//        label.font = .boldSystemFont(ofSize: 30)
-//        return label
-//    }()
-    
     let horizontalController = AppsHorizontalController() //dummy collection controller
     
     
