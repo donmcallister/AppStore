@@ -13,6 +13,14 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
     let cellId = "id"
     let headerId = "headerId"
     
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.color = .black
+        aiv.startAnimating()
+        aiv.hidesWhenStopped = true
+        return aiv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .white
@@ -23,11 +31,15 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
         //1
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerId)
         
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.fillSuperview()
+        
         fetchData()
     
     }
     var editorsChoiceGames: AppGroup?
     
+    var socialApps = [SocialApp]()
     var groups = [AppGroup]()
     
     fileprivate func fetchData() {
@@ -43,12 +55,7 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
             print("done with games")
             dispatchGroup.leave()
             group1 = appGroup
-//            if let group = appGroup {
-//                self.groups.append(group)
-//            }
-//            DispatchQueue.main.async {
-//                self.collectionView.reloadData()
-//            }
+
     }
        
          dispatchGroup.enter()
@@ -56,13 +63,7 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
         print("done with top grossing")
         dispatchGroup.leave()
         group2 = appGroup
-//            if let group = appGroup {
-//                self.groups.append(group)
-//            }
-//            DispatchQueue.main.async {
-//                self.collectionView.reloadData()
-//            }
-//        }
+
             }
         
          dispatchGroup.enter()
@@ -70,18 +71,21 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
             print("done with free games")
             dispatchGroup.leave()
             group3 = appGroup
-//            if let group = appGroup {
-//                self.groups.append(group)
-//            }
-//            DispatchQueue.main.async {
-//                self.collectionView.reloadData()
-//            }
-        
+
         }
+        dispatchGroup.enter()
+            Service.shared.fetchSocialApps { (apps, err) in
+                //you should check the err
+                //apps?.forEach({print($0.name)})
+                dispatchGroup.leave()
+                self.socialApps = apps ?? []
+             //   self.collectionView.reloadData()
+            }
         //completion
         dispatchGroup.notify(queue: .main) {
             print("completed your dispatch group tasks...")
             
+            self.activityIndicatorView.stopAnimating()
             
             if let group = group1 {
                 self.groups.append(group)
@@ -99,14 +103,16 @@ class AppsPageController: BaseListController, UICollectionViewDelegateFlowLayout
     
     //2
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath)
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! AppsPageHeader
+        header.appHeaderHorizontalController.socialApps = self.socialApps
+        header.appHeaderHorizontalController.collectionView.reloadData()
         return header
 
     }
     
     //3
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .init(width: view.frame.width, height: 0)
+        return .init(width: view.frame.width, height: 300)
     }
     
     
